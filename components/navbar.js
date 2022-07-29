@@ -1,9 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { useTheme } from 'next-themes';
-import { MoonIcon, SunIcon } from '@heroicons/react/solid';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -21,10 +18,10 @@ const userNavigation = [
 ]
 
 const navigation = [
-  { name: 'Dashboard', href: '/' },
-  { name: 'Clients', href: '/clients' },
-  { name: 'Exercises', href: '/exercises' },
-  { name: 'Programs', href: '/programs' },
+  { name: 'Dashboard', href: '/trainer' },
+  { name: 'Clients', href: '/trainer/clients' },
+  { name: 'Exercises', href: '/trainer/exercises' },
+  { name: 'Programs', href: '/trainer/programs' },
 ];
 
 function classNames(...classes) {
@@ -32,41 +29,10 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const renderThemeChanger = () => {
-    if (!mounted) return null;
-
-    const currentTheme = theme === 'system' ? systemTheme : theme;
-
-    if (currentTheme === 'dark') {
-      return (
-        <SunIcon className='w-7 h-7' role="button" onClick={() => setTheme('light')} />
-      )
-    } else {
-      return (
-        <MoonIcon className='w-7 h-7' role="button" onClick={() => setTheme('dark')} />
-      )
-    }
-  }
-
   const router = useRouter();
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full border-gray-100 dark:border-gray-700">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
@@ -74,12 +40,9 @@ export default function Navbar() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                        alt="Workflow"
-                      />
+                    <div className="text-gray-200 py-1 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-200 h-10 w-10" viewBox="0 0 448 512" fill="currentcolor"><path d="M272 0C289.7 0 304 14.33 304 32C304 49.67 289.7 64 272 64H256V98.45C293.5 104.2 327.7 120 355.7 143L377.4 121.4C389.9 108.9 410.1 108.9 422.6 121.4C435.1 133.9 435.1 154.1 422.6 166.6L398.5 190.8C419.7 223.3 432 262.2 432 304C432 418.9 338.9 512 224 512C109.1 512 16 418.9 16 304C16 200 92.32 113.8 192 98.45V64H176C158.3 64 144 49.67 144 32C144 14.33 158.3 0 176 0L272 0zM248 192C248 178.7 237.3 168 224 168C210.7 168 200 178.7 200 192V320C200 333.3 210.7 344 224 344C237.3 344 248 333.3 248 320V192z"/></svg>
+                    <h2 className="text-xl font-bold">PT PLATFORM</h2>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
@@ -105,16 +68,6 @@ export default function Navbar() {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <div className='items-center'>
-                        {renderThemeChanger()}
-                      </div>
-                      <button
-                        type="button"
-                        className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                      >
-                        <span className="sr-only">View notifications</span>
-                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="ml-3 relative">

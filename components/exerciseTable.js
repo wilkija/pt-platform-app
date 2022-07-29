@@ -15,7 +15,7 @@ const ExerciseTable = ({ data }) => {
                         </input>
                     </div>
                     <div className="relative mt-1 ml-2">
-                        <Link href='/exercises/new'><button className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+                        <Link href='/trainer/exercises/new'><button className="btn bg-blue-700 hover:bg-white hover:text-black rounded-lg block text-white font-medium text-sm px-5 py-2.5 text-center" 
                         type="button"
                         >
                         + Add Exercise
@@ -66,7 +66,7 @@ const ExerciseTable = ({ data }) => {
                                     { exercise.albumId }
                                 </td>
                                 <td className="px-6 py-4 text-right">
-                                    <Link href={'/exercises/' + exercise.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
+                                    <Link href={'/trainer/exercises/' + exercise.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
                                 </td>
                             </tr>
                         ))}

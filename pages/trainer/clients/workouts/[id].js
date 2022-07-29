@@ -1,6 +1,6 @@
-import { Menu, Transition } from '@headlessui/react'
-import { DotsVerticalIcon } from '@heroicons/react/outline'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import { Menu, Transition } from '@headlessui/react';
+import { DotsVerticalIcon } from '@heroicons/react/outline';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import {
   add,
   eachDayOfInterval,
@@ -14,10 +14,11 @@ import {
   parse,
   parseISO,
   startOfToday,
-} from 'date-fns'
-import { Fragment, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRunning } from '@fortawesome/free-solid-svg-icons'
+} from 'date-fns';
+import { Fragment, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRunning } from '@fortawesome/free-solid-svg-icons';
+import LayoutNew from '../../../../components/layoutNew';
 
 const meetings = [
   {
@@ -296,3 +297,12 @@ let colStartClasses = [
   'col-start-6',
   'col-start-7',
 ]
+
+
+WorkoutCalendar.getLayout = function getLayout(page) {
+  return (
+    <LayoutNew>
+      {page}
+    </LayoutNew>
+  )
+}

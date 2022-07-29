@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import ExerciseTable from '../../components/exerciseTable';
+import ExerciseTable from '../../../components/exerciseTable';
+import LayoutNew from '../../../components/layoutNew';
 
 export const getServerSideProps = async () => {
 
@@ -19,5 +20,13 @@ export default function Exercises({ data }) {
         </Head>
         <ExerciseTable data={data}></ExerciseTable>
     </div>
+    )
+  }
+
+Exercises.getLayout = function getLayout(page) {
+    return (
+      <LayoutNew>
+        {page}
+      </LayoutNew>
     )
   }

@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import ClientTable from '../../components/clientTable';
+import ClientTable from '../../../components/clientTable';
+import LayoutNew from '../../../components/layoutNew';
 
 export const getStaticProps = async () => {
 
@@ -22,3 +23,10 @@ export default function Clients({ data }) {
     )
   }
   
+Clients.getLayout = function getLayout(page) {
+    return (
+      <LayoutNew>
+        {page}
+      </LayoutNew>
+    )
+  }

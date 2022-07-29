@@ -8,3 +8,7 @@
         @apply min-h-screen;
     }
 }
+
+.btn {
+    @apply shadow-md py-3 px-6 rounded-md transition duration-300;
+  }

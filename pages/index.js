@@ -1,14 +1,34 @@
-import Head from 'next/head';
+import { signOut, useSession } from "next-auth/react";
+import FrontPage from '../components/frontPage';
+import MetaData from '../components/metaData';
+import LayoutNew from '../components/layoutNew';
 
 export default function Home() {
-  return (
-    <>
-    <Head>
-      <title>Home | PT Platform</title>
-    </Head>
-    <div>
+  const { data: session, loading } = useSession();
 
-    </div>
-    </>
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user.email} <br />
+        <div>You can now access our website</div>
+        <button className="btn bg-blue-700 hover:bg-white hover:text-black rounded-lg block text-white font-medium text-sm px-5 py-2.5 text-center"
+        onClick={() => signOut()}>Sign Out</button>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <MetaData title={"Best App for Personal Training | PT Platform"}/>
+        <FrontPage />
+      </>
+    )
+  }
+}
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <LayoutNew>
+      {page}
+    </LayoutNew>
   )
 }

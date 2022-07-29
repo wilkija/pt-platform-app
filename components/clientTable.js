@@ -4,7 +4,6 @@ import ClientAddModal from './clientAddModal';
 const ClientTable = ({ data }) => {
     // console.log(data)
         return (
-            
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <div className="p-4 flex">
                     <label htmlFor="table-search" className="sr-only">Search</label>
@@ -60,7 +59,7 @@ const ClientTable = ({ data }) => {
                                     { user.name }
                                 </th>
                                 <td className="px-6 py-4">
-                                    <Link href={'/clients/workouts/' + user.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <Link href={'/trainer/clients/workouts/' + user.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg></a>
@@ -73,7 +72,7 @@ const ClientTable = ({ data }) => {
                                     { user.phone }
                                 </td>
                                 <td className="px-6 py-4 text-right">
-                                    <Link href={'/clients/' + user.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
+                                    <Link href={'/trainer/clients/' + user.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
                                 </td>
                             </tr>
                         ))}
@@ -82,7 +81,6 @@ const ClientTable = ({ data }) => {
                     </tbody>
                 </table>
             </div>
-
         )
 }
 

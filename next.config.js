@@ -7,7 +7,7 @@ module.exports = {
 
   nextConfig,
   images: {
-    domains: ['via.placeholder.com'],
+    domains: ['via.placeholder.com', 'upsplash.com'],
   },
 
 }
