@@ -48,7 +48,7 @@ const ExerciseTable = ({ data }) => {
                     </thead>
                     <tbody>
                         {data.slice(0, 10).map((exercise) => (
-                            <tr key={exercise.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr key={exercise._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td className="w-4 p-4">
                                     <div className="flex items-center">
                                         <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -57,16 +57,16 @@ const ExerciseTable = ({ data }) => {
                                     </div>
                                 </td>
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                    { exercise.title }
+                                    { exercise.name }
                                 </th>
                                 <td className="px-6 py-4">
-                                    { exercise.id }
+                                    { exercise.type }
                                 </td>
                                 <td className="px-6 py-4">
-                                    { exercise.albumId }
+                                    { exercise.muscle }
                                 </td>
                                 <td className="px-6 py-4 text-right">
-                                    <Link href={'/trainer/exercises/' + exercise.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
+                                    <Link href={'/trainer/exercises/' + exercise._id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
                                 </td>
                             </tr>
                         ))}

@@ -1,9 +1,11 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import { useRouter } from "next/router";
 
 
 const ClientAddModal = () => {
     let [isOpen, setIsOpen] = useState(false)
+    const router = useRouter();
 
     function closeModal() {
         setIsOpen(false)
@@ -13,6 +15,51 @@ const ClientAddModal = () => {
         setIsOpen(true)
     }
         
+    const handlePost = async (e) => {
+        // Stop the form from submitting and refreshing the page.
+        e.preventDefault();
+
+        try {
+            // Get data from the form.
+            const data = {
+                first_name: e.target.first_name.value,
+                last_name: e.target.last_name.value,
+                email: e.target.email.value,
+                phone: e.target.phone.value,
+            };
+            console.log(data)
+    
+            const JSONdata = JSON.stringify(data);
+    
+            // Send the form data to our API and get a response.
+            const response = await fetch(`/api/clients`, {
+                // Body of the request is the JSON data we created above.
+                body: JSONdata,
+        
+                // Tell the server we're sending JSON.
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                // The method is PUT because we are sending data to be updated.
+                method: 'POST',
+            })
+    
+            // Get the response data from server as JSON.
+            // If server returns the name submitted, that means the form works.
+            const result = await response.json();
+            console.log(result);
+    
+            if (result.success) {
+                alert(`${result.data.first_name} ${result.data.last_name} has been added!`);
+                router.push('/trainer/clients');
+                closeModal();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+
     return (
         <>
             {/* Modal toggle */}
@@ -62,21 +109,26 @@ const ClientAddModal = () => {
                                 </button>
                                 <div className="py-6 px-6 lg:px-8">
                                     <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">New client info</h3>
-                                    <form className="space-y-6" action="#">
+                                    <form className="space-y-6" onSubmit={handlePost}>
                                         
                                         <div>
-                                            <label htmlFor="first-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First Name</label>
-                                            <input type="text" name="first-name" id="first-name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Jane" required>
+                                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First Name</label>
+                                            <input type="text" name="first_name" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Jane" required>
                                                 </input>
                                         </div>
                                         <div>
-                                            <label htmlFor="last-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Last Name</label>
-                                            <input type="text" name="last-name" id="last-name" placeholder="Smith" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                            <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Last Name</label>
+                                            <input type="text" name="last_name" id="last_name" placeholder="Smith" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                             </input>
                                         </div>
                                         <div>
                                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
                                             <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                                                </input>
+                                        </div>
+                                        <div>
+                                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Phone</label>
+                                            <input type="phone" name="phone" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
                                                 </input>
                                         </div>
                                         <button type="submit" className="w-full btn bg-blue-700 hover:bg-white hover:text-black rounded-lg block text-white font-medium text-sm px-5 py-2.5 text-center">Submit new client</button>

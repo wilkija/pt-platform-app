@@ -47,7 +47,7 @@ const ClientTable = ({ data }) => {
                     </thead>
                     <tbody>
                         {data.map((user) => (
-                            <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr key={user._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td className="w-4 p-4">
                                     <div className="flex items-center">
                                         <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -56,7 +56,7 @@ const ClientTable = ({ data }) => {
                                     </div>
                                 </td>
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                    { user.name }
+                                    { `${user.first_name} ${user.last_name}` }
                                 </th>
                                 <td className="px-6 py-4">
                                     <Link href={'/trainer/clients/workouts/' + user.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -72,7 +72,7 @@ const ClientTable = ({ data }) => {
                                     { user.phone }
                                 </td>
                                 <td className="px-6 py-4 text-right">
-                                    <Link href={'/trainer/clients/' + user.id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
+                                    <Link href={'/trainer/clients/' + user._id}><a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">edit</a></Link>
                                 </td>
                             </tr>
                         ))}
