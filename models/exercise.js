@@ -15,9 +15,11 @@ const ExerciseSchema = new mongoose.Schema({
   },
   type: {
     type: String,
+    enum: ['upper', 'core', 'lower']
   },
   muscle: {
     type: String,
+    enum: ['Deltoid', 'Trapezius', 'Biceps', 'Triceps', 'Abdominals', 'Obliques', 'Calves', 'Forearms', 'Hamstrings', 'Quadriceps', 'Gluteus', 'Latissimus dorsi']
   },
   
 });

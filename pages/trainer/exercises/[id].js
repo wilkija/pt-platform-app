@@ -1,4 +1,3 @@
-import LayoutNew from '../../../components/layoutNew';
 import { ensureAuth } from '../../../utils/ensureAuth';
 import { useRouter } from "next/router";
 import { useState } from 'react';
@@ -136,7 +135,7 @@ const ExerciseDetails = ({ exercise }) => {
                 height={400}
                 type="text/html"
                 src={`https://www.youtube.com/embed/${exercise.video.split("v=")[1].substring(0, 11)}?origin=http://example.com&rel=1&mute=1`}
-                frameborder="0"
+                frameBorder="0"
                 ></iframe>
             </div>
             <div className="relative z-0 w-full mb-6 group">
@@ -153,10 +152,10 @@ const ExerciseDetails = ({ exercise }) => {
             <div className="relative z-0 w-full mb-6 group">
                     <label htmlFor="exercise_type_select" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Type of Exercise (Optional)</label>
                     <select defaultValue={selectedOptionType} onChange={setSelectedOptionType} id="exercise_type_select" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                        <option value="default">Choose an exercise type</option>
+                        <option key="default" value="default">Choose an exercise type</option>
                                 {
                                     exerciseTypes.map(option => (
-                                        <option value={option.value}>{option.type}</option>
+                                        <option key={option.value} value={option.value}>{option.type}</option>
                                     ))
                                 }
                     </select>
@@ -164,10 +163,10 @@ const ExerciseDetails = ({ exercise }) => {
                 <div className="relative z-0 w-full mb-6 group">
                     <label htmlFor="muscle_select" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Primary Muscle Group (Optional)</label>
                     <select defaultValue={selectedOptionMuscle} onChange={setSelectedOptionMuscle} id="muscle_select" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                        <option value="default">Choose a muscle group</option>
+                        <option key="default" value="default">Choose a muscle group</option>
                             {
                                 muscleGroups.map(option => (
-                                    <option value={option.value}>{option.type}</option>
+                                    <option key={option.value} value={option.value}>{option.type}</option>
                                 ))
                             }
                     </select>
@@ -186,11 +185,3 @@ const ExerciseDetails = ({ exercise }) => {
 }
  
 export default ExerciseDetails;
-
-ExerciseDetails.getLayout = function getLayout(page) {
-    return (
-      <LayoutNew>
-        {page}
-      </LayoutNew>
-    )
-  }

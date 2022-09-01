@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import { ThemeProvider } from 'next-themes';
-import {SessionProvider} from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 import Layout from "../components/layout";
 
 function MyApp({ 
@@ -8,8 +8,8 @@ function MyApp({
   pageProps: { session, ...pageProps },
 }) {
 
-  const getLayout = Component.getLayout || ((page) => page);
-  return getLayout(
+  // const getLayout = Component.getLayout || ((page) => page);
+  return (
     <>
     <SessionProvider session={pageProps.session} >
         <ThemeProvider enableSystem={true} attribute="class">

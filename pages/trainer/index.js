@@ -1,47 +1,52 @@
-import { useState, useEffect } from "react";
-import { useSession, getSession } from "next-auth/react";
-import LayoutNew from '../../components/layoutNew';
+import { useSession } from "next-auth/react";
 import MetaData from "../../components/metaData";
 import { ensureAuth } from "../../utils/ensureAuth";
+import UpdateFeed from "../../components/dashboard/UpdateFeed";
+import LeftPanel from "../../components/dashboard/LeftPanel";
 
 export default function Trainer() {
-  // const { data: session, loading } = useSession();
-  // const [content, setContent] = useState();
+  const { data: session, loading } = useSession();
+  
+  const greeting = () => {
+    let today = new Date()
+    let curHr = today.getHours()
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch("/api/secret");
-  //     const json = await res.json();
+    if (curHr < 12) {
+      return 'Good morning,'
+    } else if (curHr < 18) {
+      return 'Good afternoon,'
+    } else {
+      return 'Good evening,'
+    }
+  }
+  
 
-  //     if (json.content) {
-  //       setContent(json.content);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [session]);
-
-  // if (typeof window !== "undefined" && loading) return null;
-
-  // if (!session) {
-  //   return (
-  //       <main>
-  //         <div>
-  //           <h1>You aren't signed in, please sign in first</h1>
-  //         </div>
-  //       </main>
-  //   );
-  // }
-  return (
+  if (session) {
+    return (
       <>
       <MetaData title={"Home | PT Platform"}/>
-      <main className="w-[90%] md:w-[85%] xl:w-[75%] mx-auto flex items-center justify-center my-20">
-        <div>
-          <h1> Protected Page</h1>
-          {/* <p>{content}</p> */}
+      <main className="w-[100%] mx-auto flex items-center justify-center my-20">
+        <div className="container flex items-stretch justify-between">
+          <aside className="mr-8">
+            <LeftPanel />
+          </aside>
+          <div>
+            <h1 className="mb-5 text-2xl font-bold"> {`${greeting()} ${session.user.name}!`}</h1>
+            <UpdateFeed />
+          </div>
         </div>
+
       </main>
       </>
-  );
+    );
+  } else if (loading) {
+    return (
+      <>
+        <p>One moment please. Content is loading...</p>
+      </>
+    );
+  }
+  
 }
 
 export async function getServerSideProps(context) {
@@ -50,13 +55,4 @@ export async function getServerSideProps(context) {
         props: { session }
       }
     })
-}
-
-
-Trainer.getLayout = function getLayout(page) {
-  return (
-    <LayoutNew>
-      {page}
-    </LayoutNew>
-  )
 }

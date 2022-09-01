@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import ClientTable from '../../../components/clientTable';
-import LayoutNew from '../../../components/layoutNew';
 import { ensureAuth } from '../../../utils/ensureAuth';
+import AddClientModal from '../../../components/clientAddModal'
 
 export default function Clients({ clientList }) {
     return (
@@ -9,6 +9,11 @@ export default function Clients({ clientList }) {
         <Head>
             <title>Clients | PT Platform</title>
         </Head>
+        <div className="flex items-stretch justify-between">
+          <h1 className="mb-5 ml-10 text-2xl font-bold">Clients</h1> 
+          <AddClientModal />
+        </div>
+        
         <ClientTable data={clientList}></ClientTable>
     </div>
     )
@@ -25,11 +30,3 @@ export async function getServerSideProps(context) {
       }
     })
 }
-
-Clients.getLayout = function getLayout(page) {
-    return (
-      <LayoutNew>
-        {page}
-      </LayoutNew>
-    )
-  }

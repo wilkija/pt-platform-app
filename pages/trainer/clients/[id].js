@@ -1,4 +1,3 @@
-import LayoutNew from '../../../components/layoutNew';
 import { useRouter } from "next/router";
 import { ensureAuth } from '../../../utils/ensureAuth';
 
@@ -163,11 +162,3 @@ const ClientDetails = ({ client }) => {
 }
 
 export default ClientDetails;
-
-ClientDetails.getLayout = function getLayout(page) {
-    return (
-      <LayoutNew>
-        {page}
-      </LayoutNew>
-    )
-  }

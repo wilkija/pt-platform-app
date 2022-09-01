@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { useRouter } from "next/router";
+import PlusSignIcon from "./icons/plus.svg";
 
 
 const ClientAddModal = () => {
@@ -63,12 +64,12 @@ const ClientAddModal = () => {
     return (
         <>
             {/* Modal toggle */}
-            <button className="btn bg-blue-700 hover:bg-white hover:text-black rounded-lg block text-white font-medium text-sm px-5 py-2.5 text-center" 
+            <button className="flex btn bg-blue-700 hover:bg-white hover:text-black rounded-lg text-white font-medium mr-4 px-6 py-3 text-lg text-center" 
             type="button" 
             data-modal-toggle="authentication-modal"
             onClick={openModal}
             >
-            + Add Client
+            <PlusSignIcon className="my-auto mr-2"/> Add Client
             </button>
 
             <Transition appear show={isOpen} as={Fragment}>

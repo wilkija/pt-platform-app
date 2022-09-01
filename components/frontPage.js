@@ -15,7 +15,7 @@ const FrontPage = () => {
                 <li className="cursor-pointer">Pricing</li>
                 <li className="cursor-pointer">Contact</li>
                 <button type="button" className="btn uppercase bg-blue-700 hover:bg-white hover:text-black rounded-lg block text-white font-medium text-sm px-5 py-2.5 text-center" 
-                onClick={() => signIn()}>Login</button>
+                onClick={() => signIn(null, { callbackUrl: 'http://localhost:3000/trainer' })}>Login</button>
                 </ul>
                 <div className="flex sm:hidden flex-1 justify-end">
                 <i className="text-2xl fas fa-bars"></i>

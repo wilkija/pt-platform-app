@@ -1,10 +1,10 @@
-import Navbar from '../components/navbar';
+// import Navbar from '../components/navbar';
 
-export default function LayoutNew({ children }) {
-  return (
-    <>
-      <Navbar />
-        { children }
-    </>
-  )
-}
+// export default function LayoutNew({ children }) {
+//   return (
+//     <>
+//       <Navbar />
+//         { children }
+//     </>
+//   )
+// }

@@ -2,6 +2,8 @@ import Head from 'next/head';
 import ExerciseTable from '../../../components/exerciseTable';
 import LayoutNew from '../../../components/layoutNew';
 import { ensureAuth } from '../../../utils/ensureAuth';
+import Link from 'next/link';
+import PlusSignIcon from "../../../components/icons/plus.svg";
 
 // export const getServerSideProps = async () => {
 
@@ -31,6 +33,14 @@ export default function Exercises({ exerciseList }) {
         <Head>
             <title>Exercises | PT Platform</title>
         </Head>
+        <div className="flex items-stretch justify-between">
+          <h1 className="mb-5 ml-10 text-2xl font-bold">Exercises</h1> 
+          <Link href='/trainer/exercises/new'><button className="flex btn bg-blue-700 hover:bg-white hover:text-black rounded-lg text-white font-medium mr-4 px-6 py-3 text-lg text-center" 
+                        type="button"
+                        >
+                        <PlusSignIcon className="my-auto mr-2"/>Add Exercise
+                        </button></Link>
+        </div>
         <ExerciseTable data={exerciseList}></ExerciseTable>
     </div>
     )
