@@ -23,10 +23,10 @@ Nextjs, React, Node, MongoDB, JavaScript, TailwindCSS
 
 
 >## Home Landing Page
-![Home screen demo image](/my-app/public/assets/images/home_screen_demo.png)
+![Home screen demo image](/public/assets/images/home_screen_demo.png)
 
 >## Dashboard
-![Dashboard page demo image](/my-app//public/assets/images/dashboard_demo.png)
+![Dashboard page demo image](/public/assets/images/dashboard_demo.png)
 
 >## Example Exercise
-![Dashboard page demo image](/my-app//public/assets/images/exercise_edit_demo.png)
+![Dashboard page demo image](/public/assets/images/exercise_edit_demo.png)
