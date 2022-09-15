@@ -6,17 +6,28 @@ const WorkoutSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    type: {
+        type: String,
+        required: true,
+        trim: true,
+        enum: ["endurance", "strength", "flexibility", "balance"]
+    },
     body: {
         type: String,
         required: true,
     },
     exercises: {
-        type: String,
+        type: Array,
     },
     assignedUsers: {
         type: Array,
-    }
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
-module.exports = mongoose.model('Workout', WorkoutSchema);
+module.exports = 
+    mongoose.models.Workout || mongoose.model('Workout', WorkoutSchema);
 

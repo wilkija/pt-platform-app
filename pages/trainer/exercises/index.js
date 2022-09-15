@@ -1,19 +1,9 @@
 import Head from 'next/head';
 import ExerciseTable from '../../../components/exerciseTable';
-import LayoutNew from '../../../components/layoutNew';
 import { ensureAuth } from '../../../utils/ensureAuth';
 import Link from 'next/link';
 import PlusSignIcon from "../../../components/icons/plus.svg";
 
-// export const getServerSideProps = async () => {
-
-//     const res = await fetch('https://jsonplaceholder.typicode.com/photos');
-//     const data = await res.json();
-
-//     return {
-//         props: { data }
-//     }
-// }
 
 export async function getServerSideProps(context) {
   const res = await fetch('http://localhost:3000/api/exercises')
@@ -43,13 +33,5 @@ export default function Exercises({ exerciseList }) {
         </div>
         <ExerciseTable data={exerciseList}></ExerciseTable>
     </div>
-    )
-  }
-
-Exercises.getLayout = function getLayout(page) {
-    return (
-      <LayoutNew>
-        {page}
-      </LayoutNew>
     )
   }

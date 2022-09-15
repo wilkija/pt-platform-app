@@ -1,5 +1,6 @@
 import { ensureAuth } from "../../../../utils/ensureAuth";
 import Calendar from "../../../../components/workouts/Calendar";
+import ScheduleWorkoutModal from '../../../../components/scheduleWorkoutModal';
 
 export async function getServerSideProps(context) {
     const id = context.params.id;
@@ -19,6 +20,7 @@ const ClientWorkouts = ({ client }) => {
       <>
         <div className="flex items-stretch justify-between">
           <h1 className="mb-5 ml-10 text-2xl font-bold">Workouts for { `${client.first_name} ${client.last_name}` }</h1> 
+          <ScheduleWorkoutModal />
         </div>
         <Calendar />
       </>

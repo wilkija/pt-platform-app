@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import ClientTable from '../../../components/clientTable';
 import { ensureAuth } from '../../../utils/ensureAuth';
-import AddClientModal from '../../../components/clientAddModal'
+import AddClientModal from '../../../components/clientAddModal';
 
 export default function Clients({ clientList }) {
     return (
