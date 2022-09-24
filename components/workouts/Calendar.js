@@ -15,65 +15,30 @@ import {
   parseISO,
   startOfToday,
 } from 'date-fns';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRunning } from '@fortawesome/free-solid-svg-icons';
-
-const meetings = [
-  {
-    id: 1,
-    name: 'Leslie Alexander',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    startDatetime: '2022-05-11T13:00',
-    endDatetime: '2022-05-11T14:30',
-    content: ['30 minute run', '10 minute weights', '5 minutes stretching']
-  },
-  {
-    id: 2,
-    name: 'Michael Foster',
-    imageUrl:
-      'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    startDatetime: '2022-05-20T09:00',
-    endDatetime: '2022-05-20T11:30',
-    content: ['30 minute run', '10 minute weights', '5 minutes stretching']
-  },
-  {
-    id: 3,
-    name: 'Dries Vincent',
-    imageUrl:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    startDatetime: '2022-05-20T17:00',
-    endDatetime: '2022-05-20T18:30',
-    content: ['30 minute run', '10 minute weights', '5 minutes stretching']
-  },
-  {
-    id: 4,
-    name: 'Leslie Alexander',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    startDatetime: '2022-07-09',
-    endDatetime: '2022-07-09',
-    content: ['30 minute run', '10 minute weights', '5 minutes stretching']
-  },
-  {
-    id: 5,
-    name: 'Michael Foster',
-    imageUrl:
-      'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    startDatetime: '2022-05-13T14:00',
-    endDatetime: '2022-05-13T14:30',
-    content: ['30 minute run', '10 minute weights', '5 minutes stretching']
-  },
-]
+import FlexIcon from '../icons/stretch.svg';
+import DBIcon from '../icons/dumbbell.svg';
+import BalanceIcon from '../icons/balance.svg';
+import Link from 'next/link';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Calendar() {
+export default function Calendar({ setFormDay, entries }) {
   let today = startOfToday()
   let [selectedDay, setSelectedDay] = useState(today)
+  const handleSelectedDay = () => {
+      setFormDay(selectedDay);
+      // console.log(selectedDay);
+  }
+
+  useEffect(() => {
+    handleSelectedDay()
+  })
+
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
   let firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
 
@@ -92,8 +57,8 @@ export default function Calendar() {
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
 
-  let selectedDayMeetings = meetings.filter((meeting) =>
-    isSameDay(parseISO(meeting.startDatetime), selectedDay)
+  let selectedDayMeetings = entries.filter((entry) =>
+    isSameDay(parseISO(entry.date), selectedDay)
   )
 
   return (
@@ -142,7 +107,9 @@ export default function Calendar() {
                 >
                   <button
                     type="button"
-                    onClick={() => setSelectedDay(day)}
+                    onClick={() => {
+                      setSelectedDay(day) 
+                    }}
                     className={classNames(
                       isEqual(day, selectedDay) && 'text-white dark:text-black',
                       !isEqual(day, selectedDay) &&
@@ -172,8 +139,8 @@ export default function Calendar() {
                   </button>
 
                   <div className="w-1 h-1 mx-auto mt-1">
-                    {meetings.some((meeting) =>
-                      isSameDay(parseISO(meeting.startDatetime), day)
+                    {entries.some((entry) =>
+                      isSameDay(parseISO(entry.date), day)
                     ) && (
                       <div className="w-1 h-1 rounded-full bg-sky-500"></div>
                     )}
@@ -183,7 +150,7 @@ export default function Calendar() {
             </div>
           </div>
           <section className="mt-12 md:mt-0 md:pl-14">
-            <h2 className="font-semibold text-gray-900 dark:text-white">
+            <h2 className="font-semibold text-gray-900 dark:text-white text-xl">
               Workouts for{' '}
               <time dateTime={format(selectedDay, 'yyyy-MM-dd')}>
                 {format(selectedDay, 'MMM dd, yyy')}
@@ -191,8 +158,8 @@ export default function Calendar() {
             </h2>
             <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
               {selectedDayMeetings.length > 0 ? (
-                selectedDayMeetings.map((meeting) => (
-                  <Routine meeting={meeting} key={meeting.id} />
+                selectedDayMeetings.map((entry) => (
+                  <Routine entry={entry} key={entry._id} />
                 ))
               ) : (
                 <p>Rest day.</p>
@@ -205,32 +172,62 @@ export default function Calendar() {
   )
 }
 
-function Routine({ meeting }) {
-  let startDateTime = parseISO(meeting.startDatetime)
-  let endDateTime = parseISO(meeting.endDatetime)
+function Routine({ entry }) {
+  // let startDateTime = parseISO(entries.date)
+  // let endDateTime = parseISO(entries.date)
+  const typeIcon = (param) => {
+    switch (param) {
+      case 'endurance':
+        return <FontAwesomeIcon icon={faRunning} className="w-7 h-7" />;
+      case 'strength':
+        return <DBIcon className="w-7 h-7" />;
+      case 'flexibility':
+        return <FlexIcon className="w-7 h-7" />;
+      case 'balance':
+        return <BalanceIcon className="w-7 h-7" />;
+      default:
+        return <FontAwesomeIcon icon={faRunning} className="w-7 h-7" />;
+    }
+  }
+
+    const handleDelete = async (e) => {
+      // Stop the form from submitting and refreshing the page.
+      e.preventDefault();
+
+      try {
+          // Get data from the form.
+
+          // Send the form data to our API and get a response.
+          const response = await fetch(`/api/calendar/` + entry._id, {
+              // The method is DELETE because want to remove the user.
+              method: 'DELETE',
+          })
+
+          // Get the response data from server as JSON.
+          // If server returns the name submitted, that means the form works.
+          const result = await response.json();
+          console.log(result);
+
+          if (result.success) {
+              window.location.reload();
+              alert(`Scheduled Workout has been deleted!`)
+          }
+      } catch (error) {
+          console.log(error);
+      }
+      
+  }
 
   return (
     <li className="flex items-center px-4 py-2 space-x-4 group rounded-xl hover:bg-gray-100 dark:hover:bg-gray-400">
-      <div className=''>
-        <FontAwesomeIcon icon={faRunning} className="w-8 h-8" />
+      <div className='flex-auto items-center align-middle'>
+        <div className='flex items-center align-middle justify-start'>
+          {typeIcon(entry.workout.type)}
+          <h3 className="text-gray-900 dark:text-white font-bold text-xl ml-4">{entry.workout.title}</h3>
+        </div>
+        <div className="text-gray-900 dark:text-white mt-4" dangerouslySetInnerHTML={{ __html: entry.workout.body}}></div>
       </div>
-      <div className="flex-auto">
-        <p className="text-gray-900 dark:text-white">{meeting.name}</p>
-        <p className="mt-0.5">
-          <time dateTime={meeting.startDatetime}>
-            {format(startDateTime, 'h:mm a')}
-          </time>{' '}
-          -{' '}
-          <time dateTime={meeting.endDatetime}>
-            {format(endDateTime, 'h:mm a')}
-          </time>
-        </p>
-        {meeting.content.map((exercise, exerciseIdx) => (
-            <p key={exerciseIdx}>
-                {exercise}
-            </p>
-        ))}
-      </div>
+
       <Menu
         as="div"
         className="relative opacity-0 focus-within:opacity-100 group-hover:opacity-100"
@@ -255,28 +252,27 @@ function Routine({ meeting }) {
             <div className="py-1">
               <Menu.Item>
                 {({ active }) => (
-                  <a
-                    href="#"
+                  <Link href={'/trainer/workouts/' + entry.workout._id}><a
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
                     )}
                   >
                     Edit
-                  </a>
+                  </a></Link>
                 )}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <a
-                    href="#"
+                  <form onSubmit={handleDelete}><button
+                    type="submit"
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
                     )}
                   >
-                    Cancel
-                  </a>
+                    Delete
+                  </button></form>
                 )}
               </Menu.Item>
             </div>

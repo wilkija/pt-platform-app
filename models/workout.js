@@ -17,10 +17,10 @@ const WorkoutSchema = new mongoose.Schema({
         required: true,
     },
     exercises: {
-        type: Array,
+        type: Array
     },
     assignedUsers: {
-        type: Array,
+        type: Array
     },
     createdAt: {
         type: Date,
@@ -31,3 +31,9 @@ const WorkoutSchema = new mongoose.Schema({
 module.exports = 
     mongoose.models.Workout || mongoose.model('Workout', WorkoutSchema);
 
+    // exercises: [{
+    //     type: Schema.Types.ObjectId, ref: 'Exercise'
+    // }],
+    // assignedUsers: [{
+    //     type: Schema.Types.ObjectId, ref: 'Client'
+    // }],
