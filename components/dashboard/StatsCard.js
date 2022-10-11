@@ -32,22 +32,23 @@ const StatsCard = () => {
                     
                         <div
                         key={index}
-                        className="flex flex-col p-4 bg-gray-900 rounded-lg border border-gray-300"
+                        className="flex flex-col p-4 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 rounded-lg border border-gray-300"
                         >
-                            <div className="flex items-center">
-                                <div className="p-2 bg-gray-800 rounded-lg">
+                            <div className="flex items-center pb-2">
+                                <div className="flex p-2 bg-gray-200 dark:bg-gray-800 rounded-lg">
                                     {
                                         data.status === "up" ? 
-                                        <ArrowUpIcon className="fill-current text-lg text-green-400" /> :
-                                        <ArrowDownIcon className="fill-current text-lg text-red-400" />
+                                        <ArrowUpIcon className="fill-current text-lg dark:text-green-400 text-green-700" /> :
+                                        <ArrowDownIcon className="fill-current text-lg dark:text-red-400 text-red-700" />
                                     }   
+                                <div className="ml-2 ">
+                                  <p className={`text-sm ${data.status === "up" ? 'dark:text-green-400 text-green-700' : 'dark:text-red-400 text-red-700'}`}>{data.percentage}</p>
                                 </div>
-                                <div className="ml-2">
-                                  <p className={`text-sm ${data.status === "up" ? 'text-green-400' : 'text-red-400'}`}>{data.percentage}</p>
                                 </div>
+   
                             </div>
-                            <div className="text-3xl font-semibold text-white">{ data.value }</div>
-                            <div className="text-sm tracking-wide text-gray-500">{ data.title }</div>
+                            <div className="text-3xl font-semibold text-black dark:text-white">{ data.value }</div>
+                            <div className="text-sm tracking-wide text-gray-500 dark:text-gray-300">{ data.title }</div>
                         </div>
                 )) 
             }

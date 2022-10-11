@@ -35,6 +35,10 @@ const ClientSchema = new mongoose.Schema({
   gender: {
     type: String,
     default: "",
+  },
+  trainer: {
+    type: String,
+    default: "example",
   }
 
 });

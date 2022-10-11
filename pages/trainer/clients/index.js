@@ -23,8 +23,9 @@ export async function getServerSideProps(context) {
   const res = await fetch('http://localhost:3000/api/clients')
                       .then((res) => res.json());
   const clientList = await res.data;  
-  
+
   return ensureAuth(context, (session) => {
+    
       return {
         props: { clientList, session }
       }

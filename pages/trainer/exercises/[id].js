@@ -16,35 +16,34 @@ export async function getServerSideProps(context) {
 }
 
 
+const exerciseTypes = [
+    { value: 'upper', type: 'upper' },
+    { value: 'core', type: 'core' },
+    { value: 'lower', type: 'lower' },
+]
+
+const muscleGroups = [
+    { value: 'Deltoid', type: 'Deltoid' },
+    { value: 'Trapezius', type: 'Trapezius' },
+    { value: 'Biceps', type: 'Biceps' },
+    { value: 'Triceps', type: 'Triceps' },
+    { value: 'Abdominals', type: 'Abdominals' },
+    { value: 'Obliques', type: 'Obliques' },
+    { value: 'Calves', type: 'Calves' },
+    { value: 'Forearms', type: 'Forearms' },
+    { value: 'Hamstrings', type: 'Hamstrings' },
+    { value: 'Quadriceps', type: 'Quadriceps' },
+    { value: 'Gluteus', type: 'Gluteus' },
+    { value: 'Latissimus dorsi', type: 'Latissimus dorsi' },
+
+]
+
 const ExerciseDetails = ({ exercise }) => {
     const [selectedOptionType, setSelectedOptionType] = useState(exercise.type || "default");
     const [selectedOptionMuscle, setSelectedOptionMuscle] = useState(exercise.muscle || "default");
     const onChange = e => {
         setSelectedOption(e.target.value);
     }
-
-    const exerciseTypes = [
-        { value: 'upper', type: 'upper' },
-        { value: 'core', type: 'core' },
-        { value: 'lower', type: 'lower' },
-    ]
-
-    const muscleGroups = [
-        { value: 'Deltoid', type: 'Deltoid' },
-        { value: 'Trapezius', type: 'Trapezius' },
-        { value: 'Biceps', type: 'Biceps' },
-        { value: 'Triceps', type: 'Triceps' },
-        { value: 'Abdominals', type: 'Abdominals' },
-        { value: 'Obliques', type: 'Obliques' },
-        { value: 'Calves', type: 'Calves' },
-        { value: 'Forearms', type: 'Forearms' },
-        { value: 'Hamstrings', type: 'Hamstrings' },
-        { value: 'Quadriceps', type: 'Quadriceps' },
-        { value: 'Gluteus', type: 'Gluteus' },
-        { value: 'Latissimus dorsi', type: 'Latissimus dorsi' },
-
-    ]
-
 
     const router = useRouter();
     // Handle the submit event on form submit.

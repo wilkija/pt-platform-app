@@ -16,21 +16,21 @@ export async function getServerSideProps(context) {
     })
 }
 
+const workoutTypes = [
+    { value: "endurance", type: "endurance" },
+    { value: "strength", type: "strength" },
+    { value: "flexibility", type: "flexibility" },
+    { value: "balance", type: "balance" },
+];
 
 const WorkoutDetails = ({ workout }) => {
+
     const [selectedOptionType, setSelectedOptionType] = useState(workout.type || "default");
     const onChange = e => {
         setSelectedOption(e.target.value);
     }
     const [textEditorData, setVal] = useState(workout.body || '');
     console.log(textEditorData)
-  
-    const workoutTypes = [
-        { value: "endurance", type: "endurance" },
-        { value: "strength", type: "strength" },
-        { value: "flexibility", type: "flexibility" },
-        { value: "balance", type: "balance" },
-    ];
   
     const router = useRouter();
     // Handle the submit event on form submit.

@@ -6,9 +6,9 @@ import Layout from "../components/layout";
 function MyApp({ 
   Component,
   pageProps: { session, ...pageProps },
+  
 }) {
 
-  // const getLayout = Component.getLayout || ((page) => page);
   return (
     <>
     <SessionProvider session={pageProps.session} >

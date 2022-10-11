@@ -26,6 +26,10 @@ const WorkoutSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    trainer: {
+        type: String,
+        default: "example",
+    }
 });
 
 module.exports = 

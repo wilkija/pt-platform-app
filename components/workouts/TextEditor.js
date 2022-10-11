@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import styles from './texteditor.module.css';
 
 function TextEditor(params) {
   // Solution-2 start
@@ -22,19 +23,20 @@ function TextEditor(params) {
   if (loaded) {
     return (
       <>
-        <CKEditor  
-        editor={ClassicEditor}
-          data={params.textEditorData}
-          onReady={(editor) => {
-            // You can store the "editor" and use when it is needed.
-            console.log("Editor is ready to use!", editor);
-          }}
-          onChange={ ( event, editor ) => {
-            const data = editor.getData();
-            // console.log( { event, editor, data } );
-            params.setVal(data);
-        } }
-        />
+          <CKEditor  
+            editor={ClassicEditor}
+            data={params.textEditorData}
+            className={styles.ck}
+            onReady={(editor) => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor is ready to use!", editor);
+            }}
+            onChange={ ( event, editor ) => {
+              const data = editor.getData();
+              // console.log( { event, editor, data } );
+              params.setVal(data);
+          } }
+          />
       </>
     );
   } else {
