@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import MetaData from "../../components/metaData";
+import MetaData from "../../components/MetaData";
 import { ensureAuth } from "../../utils/ensureAuth";
 import UpdateFeed from "../../components/dashboard/UpdateFeed";
 import LeftPanel from "../../components/dashboard/LeftPanel";

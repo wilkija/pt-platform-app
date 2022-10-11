@@ -1,5 +1,6 @@
 const updates = [
     {
+        id: 1,
         name: "Bonnie Radison",
         photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
         time: "just now",
@@ -8,6 +9,7 @@ const updates = [
         commentMsg: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     },
     {
+        id: 2,
         name: "Bonnie Radison",
         photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
         time: "just now",
@@ -16,6 +18,7 @@ const updates = [
         commentMsg: "",
     },
     {
+        id: 3,
         name: "Thomas Lean",
         photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
         time: "2 hours ago",
@@ -24,6 +27,7 @@ const updates = [
         commentMsg: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     },
     {
+        id: 4,
         name: "Thomas Lean",
         photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
         time: "3 hours ago",
@@ -32,6 +36,7 @@ const updates = [
         commentMsg: "",
     },
     {
+        id: 5,
         name: "Jese Leos",
         photo: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
         time: "1 day ago",
@@ -49,7 +54,7 @@ const UpdateFeed = () => {
                 {
                     updates.map((data) => (
 
-                        <li className="mb-10 ml-10">            
+                        <li key={data.id} className="mb-10 ml-10">            
                             <span className="flex absolute -left-3 justify-center items-center w-10 h-10 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                                 <img className="rounded-full shadow-lg" src={data.photo} alt=""/>
                             </span>

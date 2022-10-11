@@ -1,6 +1,6 @@
 import { signOut, useSession } from "next-auth/react";
 import FrontPage from '../components/frontPage';
-import MetaData from '../components/metaData';
+import MetaData from '../components/MetaData';
 import Link from "next/link";
 
 export default function Home() {

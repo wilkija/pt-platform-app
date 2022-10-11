@@ -25,7 +25,7 @@ const stats = [
 const StatsCard = () => {
     return ( 
         <>
-            <h3 className="mt-4">This Week's Stats</h3>
+            <h3 className="mt-4">This Week&apos;s Stats</h3>
             <div  className="flex flex-col gap-y-4 mt-4">
             {
                 stats.map((data, index) => (
