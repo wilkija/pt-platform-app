@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import { ensureAuth } from '../../../utils/ensureAuth';
 
 export async function getServerSideProps(context) {
+    const host = process.env.NEXTAUTH_URL;
     const id = context.params.id;
-    const res = await fetch('http://localhost:3000/api/clients/' + id)
+    const res = await fetch(`${host}/api/clients/` + id)
                             .then((res) => res.json());
     const data = await res.data;
     

@@ -6,7 +6,8 @@ import PlusSignIcon from "../../../components/icons/plus.svg";
 
 
 export async function getServerSideProps(context) {
-  const res = await fetch('http://localhost:3000/api/exercises')
+  const host = process.env.NEXTAUTH_URL;
+  const res = await fetch(`${host}/api/exercises`)
                       .then((res) => res.json());
   const exerciseList = await res.data;
 

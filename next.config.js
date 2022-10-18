@@ -6,7 +6,7 @@ const nextConfig = {
 module.exports = {
   nextConfig,
   images: {
-    domains: ['via.placeholder.com', 'upsplash.com'],
+    domains: ['via.placeholder.com', 'source.unsplash.com', 'images.unsplash.com'],
   },
   webpack(config) {
     config.module.rules.push({

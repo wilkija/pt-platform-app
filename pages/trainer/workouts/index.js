@@ -6,7 +6,8 @@ import WorkoutTable from '../../../components/workouts/WorkoutTable';
 
 
 export async function getServerSideProps(context) {
-  const res = await fetch('http://localhost:3000/api/workouts')
+  const host = process.env.NEXTAUTH_URL;
+  const res = await fetch(`${host}/api/workouts`)
                       .then((res) => res.json());
   const workoutList = await res.data;
 

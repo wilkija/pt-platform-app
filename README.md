@@ -1,5 +1,7 @@
 # Personal Training Virtual Platform
 
+**Current Site:** https://pt-platform-wilkija.vercel.app/
+
 NOTE: This project is a work in progress with the goal of commiting 100 hours to reach the MVP.
 
 This is a full stack web application that is meant to serve as a interface for independent personal trainers to run a virtual business. It allows trainers to:

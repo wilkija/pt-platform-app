@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const updates = [
     {
         id: 1,
@@ -56,7 +58,7 @@ const UpdateFeed = () => {
 
                         <li key={data.id} className="mb-10 ml-10">            
                             <span className="flex absolute -left-3 justify-center items-center w-10 h-10 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                                <img className="rounded-full shadow-lg" src={data.photo} alt=""/>
+                                <Image className="rounded-full shadow-lg" src={data.photo} layout="fill" alt=""/>
                             </span>
                                 {
                                     data.commentBool ?

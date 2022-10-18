@@ -4,15 +4,16 @@ import ScheduleWorkoutModal from '../../../../components/scheduleWorkoutModal';
 import { useState } from "react";
 
 export async function getServerSideProps(context) {
+    const host = process.env.NEXTAUTH_URL;
     const id = context.params.id;
-    const clientRes = await fetch('http://localhost:3000/api/clients/' + id)
+    const clientRes = await fetch(`${host}/api/clients/` + id)
                             .then((res) => res.json());
     const client = await clientRes.data;
-    const workoutsRes = await fetch('http://localhost:3000/api/workouts/')
+    const workoutsRes = await fetch(`${host}/api/workouts/`)
                             .then((res) => res.json());
     const workouts = await workoutsRes.data;
 
-    const entryRes = await fetch('http://localhost:3000/api/calendar/' + id)
+    const entryRes = await fetch(`${host}/api/calendar/` + id)
                               .then((res) => res.json());
     const entries = await entryRes.data;
     // console.log(entries)

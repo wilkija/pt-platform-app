@@ -42,4 +42,4 @@ export const options = {
     },
 };
 
-export default (req, res) => NextAuth(req, res, options);
+export default NextAuth(options);

@@ -29,7 +29,7 @@ const Accordion = () => {
     return ( 
         <div id="accordion-flush" data-accordion="collapse">
             {data.map((item, i) => (
-                <div key={item} >
+                <div key={i} >
                 <h2 onClick={() => toggle(i)}>
                     <button type="button" className="flex items-center justify-between w-full py-5 font-medium text-left border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
                     <span>{item.question}</span>
