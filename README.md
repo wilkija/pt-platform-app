@@ -1,6 +1,6 @@
 # Personal Training Virtual Platform
 
-**Current Site:** https://pt-platform-wilkija.vercel.app/
+**Current Site:** https://just-in-time-fitness.vercel.app/
 
 NOTE: This project is a work in progress with the goal of commiting 100 hours to reach the MVP.
 
